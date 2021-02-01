@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Dashboard from './components/DashBoard';
+import SavedMovies  from './components/SavedMovies';
+import Movie from './components/Movie';
+import Popular from './components/Popular';
+import Login from './components/login';
+import UserProvider from "./providers/UserProvider";
+import TopMovies from './components/TopMovies';
 
 function App() {
+
+  // let userPath = `/${user}/SavedMovies`;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <UserProvider>
+    <Router>
+    <div>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/SavedMovies">
+            <SavedMovies />
+          </Route>
+          <Route path="/Movie">
+            <Movie />
+          </Route>
+          <Route path="/popular">
+            <Popular />
+          </Route>
+          <Route path="/top_rated">
+            <TopMovies />
+          </Route>
+          <Route exact path="/">
+            <Login />
+          </Route>
+
     </div>
+    </Router>
+    </UserProvider>
   );
 }
 
