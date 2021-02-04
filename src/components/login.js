@@ -1,25 +1,36 @@
 import React , { useEffect, useContext, useState } from 'react';
 import { signInWithGoogle } from "../firebase";
 import { UserContext } from '../providers/UserProvider';
-import { useHistory } from 'react-router-dom';
+import { useHistory,Redirect  } from 'react-router-dom';
+import { useAuth } from "../providers/AuthContext"
 
 function Login() {
-   const user = useContext(UserContext)
+  const { login } = useAuth()
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
 
-   const history = useHistory();
-   useEffect(() => {
-    if (user) {
-      history.push("/dashboard");
+  async function handleSubmit() {
+
+    try {
+      setError("")
+      setLoading(true)
+      await login()
+      history.push("/dashboard")
+    } catch {
+      setError("Failed to log in")
     }
-  })
+
+    setLoading(false)
+  }
 
   return (
-    <div style={{ height: '100vh',width: '100vw',display: 'grid', placeContent: 'center',backgroundColor: '#fff'}}>
-    <div className="ui raised very padded text container center aligned segment" style={{padding:' 100px',textAlign: 'center',backgroundColor: '#fff'}}>
-        <h2 className="ui header" >LogIn to MoviePedia!</h2>
+    <div style={{ height: '100vh',width: '100vw',display: 'grid', placeContent: 'center'}}>
+    <div className="ui raised very padded text container center aligned inverted segment" style={{padding:' 100px',textAlign: 'center'}}>
+        <h2 className="ui header" >Login to MoviePedia!</h2>
         
-        <button className="ui secondary button" onClick={signInWithGoogle}>
-        <i class="google icon"></i>
+        <button className="ui primary button" onClick={handleSubmit}>
+        <i className="google icon"></i>
         <span> SignIn with Google</span>
        </button>
       </div>

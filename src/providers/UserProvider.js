@@ -15,6 +15,7 @@ export default (props) => {
       }
     });
   }, []);
+
   return (
     <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
   );

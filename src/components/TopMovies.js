@@ -1,11 +1,15 @@
 import React, { useEffect, useContext, useState } from "react";
-import { UserContext } from "../providers/UserProvider";
+import { useAuth } from "../providers/AuthContext";
 import { moviedb,api_key } from "../moviedb";
+import { Redirect,useHistory } from 'react-router-dom';
 import MovieItem from './MovieItem';
 import VerticalMenu from "./VerticalMenu";
 
 function TopMovies(){
-  const user = useContext(UserContext);
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+
   const [messages,setMessages]=useState([]);
   useEffect(() => {
     let movieList=[];
@@ -30,7 +34,7 @@ function TopMovies(){
 
   return (
     <div>
-      <VerticalMenu name={user?user.displayName:''} pic={user?user.photoURL:''}/>
+      <VerticalMenu name={currentUser.displayName} pic={currentUser.photoURL}/>
       <div className="ui segment" style={{marginLeft: 'auto', marginRight: 'auto',display: 'block', justifyContent: 'center', width: '80%', backgroundColor:'#1d1e22'}}>{messages}</div>
     </div>
   );

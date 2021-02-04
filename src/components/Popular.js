@@ -2,10 +2,14 @@ import React, { useEffect, useContext, useState } from "react";
 import { UserContext } from "../providers/UserProvider";
 import { moviedb,api_key } from "../moviedb";
 import MovieItem from './MovieItem';
+import UserProvider from "../providers/UserProvider";
+import { Redirect,useHistory } from 'react-router-dom';
 import VerticalMenu from "./VerticalMenu";
 
 function Popular(){
+  const history = useHistory();
   const user = useContext(UserContext);
+
   const [messages,setMessages]=useState([]);
   useEffect(() => {
     let movieList=[];
@@ -30,7 +34,7 @@ function Popular(){
 
   return (
     <div>
-      <VerticalMenu name={user?user.displayName:''} pic={user?user.photoURL:''}/>
+      <VerticalMenu name={user.displayName} pic={user.photoURL}/>
       <div className="ui segment" style={{marginLeft: 'auto', marginRight: 'auto',display: 'block', justifyContent: 'center', width: '80%', backgroundColor:'#1d1e22'}}>{messages}</div>
     </div>
   );

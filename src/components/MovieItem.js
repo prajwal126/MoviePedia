@@ -2,50 +2,63 @@ import React , { useEffect, useContext, useState } from 'react';
 import { Redirect,useHistory } from 'react-router-dom';
 import { moviedb } from "../moviedb";
 import {firestore} from "../firebase";
-import { UserContext } from "../providers/UserProvider";
+import firebase from "../firebase";
+import { useAuth } from "../providers/AuthContext";
 
 function MovieItem(props){
   const history = useHistory();
-  const user = useContext(UserContext);
+  const { currentUser, logout } = useAuth();
   const url = `https://image.tmdb.org/t/p/w500${props.poster}`
   const movieUrl  = `${props.id}`
-
+  const [error,setError]=useState();
   const loadMovie = () => history.push( { pathname: '/Movie',
   search: movieUrl});
 
-  var rootRef = firestore.collection('SavedMovieList').doc(user.email);
+  var rootRef = firestore.collection('SavedMovieList').doc(currentUser.email);
   const saveMovie = () => {
-      rootRef.update({[props.id]: {props}})
-      .then(function(docRef) {
-          console.log("Tutorial created with ID: ", docRef.id);
-      })
-      .catch(function(error) {
-          console.error("Error adding Tutorial: ", error);
-      });;
-      history.push( { pathname: '/SavedMovies'});
+    rootRef.get()
+      .then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          rootRef.update({[props.id]: {props}})
+          .then(function(docRef) {
+              console.log("Tutorial created with ID: ", docRef.id);
+          })
+          .catch(function(err) {
+              setError(err);
+          });;
+
+        } else {
+          rootRef.set({[props.id]: {props}})
+          .then(function() {
+              console.log("Document successfully written!");
+          })
+          .catch(function(error) {
+              console.error("Error writing document: ", error);
+          });
+        }
+    });
+        history.push( { pathname: '/SavedMovies'});
     }
+
   const deleteMovie = () => {
-    let updates = {};
-    updates[props.id] = firestore.INTERNAL.delete();
       rootRef.update({
-          updates
+        [props.id]:firebase.firestore.FieldValue.delete()
       });
-      history.push( { pathname: '/SavedMovies'});
     }
   
   function saveButton(){
-    return (<div class="ui vertical animated button" tabindex="0" onClick={saveMovie}>
-      <div class="hidden content">Save</div>
-      <div class="visible content">
-        <i class="save icon"></i>
+    return (<div className="ui vertical animated button" tabIndex="0" onClick={saveMovie}>
+      <div className="hidden content">Save</div>
+      <div className="visible content">
+        <i className="save icon"></i>
       </div>
     </div>)
   }
   function delButton(){
-    return (<div class="ui vertical animated button" tabindex="0" onClick={deleteMovie}>
-      <div class="hidden content">Delete</div>
-      <div class="visible content">
-        <i class="trash icon"></i>
+    return (<div className="ui vertical animated button" tabIndex="0" onClick={deleteMovie}>
+      <div className="hidden content">Delete</div>
+      <div className="visible content">
+        <i className="trash icon"></i>
       </div>
     </div>)
   }
@@ -68,10 +81,10 @@ function MovieItem(props){
           <p style={{color:'whitesmoke'}}>{props.overview}</p>
         </div>
         <div className="extra">
-          <div class="ui animated button" tabindex="0" onClick={loadMovie}>
-            <div class="visible content">View</div>
-            <div class="hidden content">
-              <i class="right arrow icon"></i>
+          <div className="ui animated button" tabIndex="0" onClick={loadMovie}>
+            <div className="visible content">View</div>
+            <div className="hidden content">
+              <i className="right arrow icon"></i>
             </div>
           </div>
           {props.del=='true'?delButton():saveButton()}
@@ -79,7 +92,7 @@ function MovieItem(props){
         </div>
       </div>
     </div>
-    <div class="ui inverted divider"></div>
+    <div className="ui inverted divider"></div>
   </div>
  
   )
