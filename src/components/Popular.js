@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { UserContext } from "../providers/UserProvider";
+import { useAuth } from "../providers/AuthContext";
 import { moviedb,api_key } from "../moviedb";
 import MovieItem from './MovieItem';
 import UserProvider from "../providers/UserProvider";
@@ -8,7 +8,7 @@ import VerticalMenu from "./VerticalMenu";
 
 function Popular(){
   const history = useHistory();
-  const user = useContext(UserContext);
+  const { currentUser, logout } = useAuth();
 
   const [messages,setMessages]=useState([]);
   useEffect(() => {
@@ -34,7 +34,7 @@ function Popular(){
 
   return (
     <div>
-      <VerticalMenu name={user.displayName} pic={user.photoURL}/>
+      <VerticalMenu name={currentUser.displayName} pic={currentUser.photoURL}/>
       <div className="ui segment" style={{marginLeft: 'auto', marginRight: 'auto',display: 'block', justifyContent: 'center', width: '80%', backgroundColor:'#1d1e22'}}>{messages}</div>
     </div>
   );
