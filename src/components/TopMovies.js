@@ -6,6 +6,7 @@ import MovieItem from './MovieItem';
 import VerticalMenu from "./VerticalMenu";
 
 function TopMovies(){
+  document.body.style = 'background: #feda6a;';
   const { currentUser, logout } = useAuth();
   const history = useHistory();
 

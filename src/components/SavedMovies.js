@@ -6,6 +6,7 @@ import MovieItem from "./MovieItem";
 import VerticalMenu from "./VerticalMenu";
 
 function SavedMovies(props){
+    document.body.style = 'background: #feda6a;';
     const history = useHistory();
     const { currentUser, logout } = useAuth();
 

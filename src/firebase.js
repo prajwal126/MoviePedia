@@ -12,25 +12,17 @@ const firebaseConfig = {
     measurementId: "G-Y2XGHFT3TJ"
   };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+ }else {
+    firebase.app(); // if already initialized, use that one
+ }
+
+
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
-const provider = new firebase.auth.GoogleAuthProvider();
+export const provider = new firebase.auth.GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
-  auth.signInWithPopup(provider).then((res) => {
-    console.log(res.user)
-  }).catch((error) => {
-    console.log(error.message)
-  });
-}
-
-export const logOut = () => {
-  auth.signOut().then(()=> {
-    console.log('logged out')
-    }).catch((error) => {
-    console.log(error.message)
-  })
-}
 export default firebase;
 

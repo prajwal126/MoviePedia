@@ -16,12 +16,14 @@ function MovieItem(props){
 
   var rootRef = firestore.collection('SavedMovieList').doc(currentUser.email);
   const saveMovie = () => {
+    let flag=false;
     rootRef.get()
       .then((docSnapshot) => {
         if (docSnapshot.exists) {
           rootRef.update({[props.id]: {props}})
           .then(function(docRef) {
               console.log("Tutorial created with ID: ", docRef.id);
+              flag=true;
           })
           .catch(function(err) {
               setError(err);
@@ -31,19 +33,23 @@ function MovieItem(props){
           rootRef.set({[props.id]: {props}})
           .then(function() {
               console.log("Document successfully written!");
+              flag=true;
           })
           .catch(function(error) {
               console.error("Error writing document: ", error);
           });
         }
+        window.location.replace('/SavedMovies');
     });
-        history.push( { pathname: '/SavedMovies'});
+        
     }
 
   const deleteMovie = () => {
       rootRef.update({
         [props.id]:firebase.firestore.FieldValue.delete()
-      });
+      }).then(()=>{
+        window.location.replace('/SavedMovies');
+      })   
     }
   
   function saveButton(){

@@ -9,6 +9,7 @@ import Moment from 'moment-timezone';
 import VerticalMenu from "./VerticalMenu";
 
 function Movie(props){
+    document.body.style = 'background: #feda6a;';
     const history = useHistory();
     const { currentUser, logout } = useAuth();
 
@@ -103,8 +104,9 @@ function Movie(props){
   if(cast){
       const castArray = cast.cast;
       let c={}
+      let k=0;
       for(c in castArray){
-        if(castArray[c].profile_path!=null){
+        if(castArray[c].profile_path!=null && k<5){
           const imgURL=`https://image.tmdb.org/t/p/w500${castArray[c].profile_path}`;
           const card=<div className="ui card"><div className="image"><img src={imgURL}/></div>
           <div className="content">
@@ -113,6 +115,7 @@ function Movie(props){
           </div>
         </div>
           castDetails.push(card)
+          k++;
         }
 
       }
@@ -121,6 +124,7 @@ function Movie(props){
     rootRef.set({[currentUser.email.toString()]:{timestamp: firebase.firestore.FieldValue.serverTimestamp(),comment,pic:currentUser.photoURL}})
     .then(function() {
         console.log("Document successfully written!");
+        window.location.replace('/Movie?'+movieId);
     },[messages])
     .catch(function(error) {
         console.error("Error writing document: ", error);

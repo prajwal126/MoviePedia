@@ -8,15 +8,16 @@ function Login() {
   const { login } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const history = useHistory();
+  document.body.style = 'background: #feda6a;';
 
   async function handleSubmit() {
-
     try {
       setError("")
       setLoading(true)
-      await login()
+      await login();
       history.push("/dashboard")
+      
     } catch {
       setError("Failed to log in")
     }

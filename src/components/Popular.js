@@ -7,6 +7,7 @@ import { Redirect,useHistory } from 'react-router-dom';
 import VerticalMenu from "./VerticalMenu";
 
 function Popular(){
+  document.body.style = 'background: #feda6a;';
   const history = useHistory();
   const { currentUser, logout } = useAuth();
 
