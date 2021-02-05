@@ -1,0 +1,50 @@
+[debug] [2021-02-05T02:57:01.099Z] ----------------------------------------------------------------------
+[debug] [2021-02-05T02:57:01.101Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PrajwalPrasadLaptop\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-02-05T02:57:01.101Z] CLI Version:   9.3.0
+[debug] [2021-02-05T02:57:01.101Z] Platform:      win32
+[debug] [2021-02-05T02:57:01.101Z] Node Version:  v15.7.0
+[debug] [2021-02-05T02:57:01.103Z] Time:          Thu Feb 04 2021 20:57:01 GMT-0600 (Central Standard Time)
+[debug] [2021-02-05T02:57:01.103Z] ----------------------------------------------------------------------
+[debug] [2021-02-05T02:57:01.103Z] 
+[debug] [2021-02-05T02:57:01.109Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-05T02:57:01.110Z] > authorizing via signed-in user
+[debug] [2021-02-05T02:57:01.110Z] [iam] checking project moviepedia-8b711 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2021-02-05T02:57:01.113Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/moviepedia-8b711:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2021-02-05T02:57:01.221Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 05 Feb 2021 02:57:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=37","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-05T02:57:01.223Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/moviepedia-8b711/serviceAccounts/moviepedia-8b711@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-02-05T02:57:01.331Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 05 Feb 2021 02:57:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-05T02:57:01.333Z] > refreshing access token with scopes: []
+[debug] [2021-02-05T02:57:01.334Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-02-05T02:57:01.423Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Fri, 05 Feb 2021 02:57:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-05T02:57:01.430Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moviepedia-8b711 [none]
+[debug] [2021-02-05T02:57:01.590Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moviepedia-8b711 200
+[debug] [2021-02-05T02:57:01.591Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moviepedia-8b711 {"projectId":"moviepedia-8b711","projectNumber":"1052898366316","displayName":"MoviePedia","name":"projects/moviepedia-8b711","resources":{"hostingSite":"moviepedia-8b711","realtimeDatabaseInstance":"moviepedia-8b711-default-rtdb","storageBucket":"moviepedia-8b711.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'moviepedia-8b711'...
+[info] 
+[info] i  deploying database, functions 
+[info] i  database: checking rules syntax... 
+[debug] [2021-02-05T02:57:03.994Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-02-05T02:57:03.994Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-02-05T02:57:04.084Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Fri, 05 Feb 2021 02:57:03 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-05T02:57:04.089Z] >>> HTTP REQUEST GET https://firebasedatabase.googleapis.com/v1beta/projects/moviepedia-8b711/locations/-/instances/moviepedia-8b711-default-rtdb  
+ 
+[debug] [2021-02-05T02:57:04.358Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 05 Feb 2021 02:57:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-05T02:57:04.360Z] >>> HTTP REQUEST PUT https://moviepedia-8b711-default-rtdb.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "now < 1614405600000",  // 2021-2-27
+    ".write": "now < 1614405600000",  // 2021-2-27
+  }
+}
+[debug] [2021-02-05T02:57:04.561Z] <<< HTTP RESPONSE 423 {"server":"nginx","date":"Fri, 05 Feb 2021 02:57:04 GMT","content-type":"application/json; charset=utf-8","content-length":"111","connection":"keep-alive","access-control-allow-origin":"*","cache-control":"no-cache","strict-transport-security":"max-age=31556926; includeSubDomains; preload"}
+[debug] [2021-02-05T02:57:04.561Z] <<< HTTP RESPONSE BODY {
+  "error" : "The Firebase database 'moviepedia-8b711-default-rtdb' has been disabled by a database owner."
+}
+
+[error] 
+[error] Error: Unexpected error while deploying database rules.
