@@ -7,7 +7,6 @@ import { AuthProvider } from "./providers/AuthContext";
 import Movie from './components/Movie';
 import Popular from './components/Popular';
 import Login from './components/Login';
-import UserProvider from "./providers/UserProvider";
 import TopMovies from './components/TopMovies';
 import PrivateRoute from './components/PrivateRoute';
 

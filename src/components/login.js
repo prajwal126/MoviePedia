@@ -1,6 +1,4 @@
 import React , { useEffect, useContext, useState } from 'react';
-import { signInWithGoogle } from "../firebase";
-import { UserContext } from '../providers/UserProvider';
 import { useHistory,Redirect  } from 'react-router-dom';
 import { useAuth } from "../providers/AuthContext"
 
